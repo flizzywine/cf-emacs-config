@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: for_iter
+# key: fi
+# --
+for(${1:vector<int>}::iterator it= ${2:}.begin();it!=$2.end();++it){
+    $3
+}

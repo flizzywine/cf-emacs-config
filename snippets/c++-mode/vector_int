@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: vector<int>
+# name: vector<type>
 # key: vt
 # --
-vector<int>$0
+vector<${1:int}>$0

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: set_trace
-# key: tr
-# --
-
-pdb.set_trace()
-$0

@@ -1,0 +1,13 @@
+.DS_Store
+.emacs.desktop
+ac-comphist.dat
+auto-save-list
+desktop-save
+elpa
+eshell
+recentf
+request
+semanticdb
+smart-compile.el
+smex-items
+

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: new-function
+# key:  def
+# --
+(defun $1  ()
+  (interactive)
+  $0)

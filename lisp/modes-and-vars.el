@@ -58,6 +58,23 @@
 ;; (desktop-save-mode 1)
 (setq-default cursor-type 'bar)
 (show-paren-mode t)
+(setq tab-always-indent 'complete)
+
+(global-auto-revert-mode t)
+
+
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                         try-expand-dabbrev-all-buffers
+                                         try-expand-dabbrev-from-kill
+                                         try-complete-file-name-partially
+                                         try-complete-file-name
+                                         try-expand-all-abbrevs
+                                         try-expand-list
+                                         try-expand-line
+                                         try-complete-lisp-symbol-partially
+                                         try-complete-lisp-symbol))
+(set-frame-font "monaco")
+
 (provide 'modes-and-vars)
 
 
