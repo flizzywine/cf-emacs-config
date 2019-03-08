@@ -97,7 +97,7 @@
    :config
    (elpy-enable)
    (setq indent-tabs-mode nil)
-  (define-key python-mode-map (kbd "C-'") 'elpy-autopep8-fix-code)
+   (define-key python-mode-map (kbd "H-;") 'elpy-autopep8-fix-code)
   ;; (define-key python-mode-map (kbd "RET") 'RET-for-python)
   (define-key python-mode-map (kbd "H-r") 'run-python)
   (define-key python-mode-map (kbd "H-d") 'debug-python)

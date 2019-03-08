@@ -21,7 +21,7 @@
 
 (global-set-key (kbd "H-f") 'helm-occur)
 (global-set-key (kbd "H-F") 'helm-multi-swoop-projectile)
-(global-set-key (kbd "H-k") 'save-and-kill-this-buffer)
+
 (defun save-and-kill-this-buffer ()
   (interactive)
   (save-current-buffer)
@@ -71,18 +71,14 @@
 (global-set-key (kbd "<f11>") 'toggle-fullscreen)
 
 (global-set-key (kbd "C-<backspace>") (lambda ()
-                                        (interactive)
-                                        (kill-line 0)
-                                        (indent-according-to-mode)))
+										(interactive)
+										(kill-line 0)
+										(indent-according-to-mode)))
 
-(global-set-key (kbd "H-E") 'eval-buffer)
 
-;; (global-set-key (kbd "M-v") 'switch-to-next-buffer)
-;; (global-set-key (kbd "C-V") 'switch-to-next-buffer)
-(global-set-key (kbd "C-v") 'helm-buffers-list)
+
 (global-set-key (kbd "H-E") 'eval-buffer)
 (global-set-key (kbd "C-q") 'query-replace-regexp)
-;; (global-set-key (kbd "C-y") 'xah-paste-or-paste-previous)
 (global-set-key (kbd "M-h") 'delete-word)
 
 
@@ -139,8 +135,8 @@
 	 (define-key map "\e[1;P49" (kbd "H-<f5>"))
 	 (define-key map "\e[1;P50" (kbd "H-<f6>"))
 	 (define-key map "\e[1;P51" (kbd "H-<f7>"))
-	 (define-key map "\e[1;P52" (kbd "H-<f8>"))
 	 (define-key map "\e[1;P53" (kbd "H-<f9>"))
+	 (define-key map "\e[1;P52" (kbd "H-<f8>"))
 	 (define-key map "\e[1;P54" (kbd "H-<f10>"))
 	 (define-key map "\e[1;P55" (kbd "H-<f11>"))
 	 (define-key map "\e[1;P56" (kbd "H-<f12>"))
@@ -149,29 +145,14 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (define-key global-map (kbd "H-M-g") 'goto-line)
+
+
+;;buffer manage
+(global-set-key (kbd "H-[") 'switch-to-prev-buffer)
+(global-set-key (kbd "H-]") 'switch-to-next-buffer)
+(global-set-key (kbd "H-k") 'save-and-kill-this-buffer)
+;;
+(global-set-key (kbd "M-h") 'backward-delete-word)
+(global-set-key (kbd "H-O") 'xah-open-in-desktop)
+(global-set-key (kbd "M-c") 'upcase-char)
 (provide 'kbds)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
