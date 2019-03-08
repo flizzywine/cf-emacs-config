@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: logger
+# key: lg
+# --
+test.logger.info(String.format($0));

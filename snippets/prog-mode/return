@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: return
+# name: return_true
 # key: rt
 # --
-return $0
+return true;

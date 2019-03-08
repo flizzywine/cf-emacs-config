@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ar_and_n
+# key: ar
+# --
+int ar[], int n

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: often_use_snippet
+# key: n
+# --
+codes.push_back(gen_code($0));

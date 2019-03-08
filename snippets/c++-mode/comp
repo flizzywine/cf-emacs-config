@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: comp
+# key: comp
+# --
+bool ${1:comp}(${2:node}&a, $2&b){
+	$0
+}

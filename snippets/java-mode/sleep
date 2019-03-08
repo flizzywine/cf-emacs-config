@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sleep
+# key: slp
+# --
+try{ Thread.sleep(${1:1000});
+} catch(InterruptedException e) {}
+$0

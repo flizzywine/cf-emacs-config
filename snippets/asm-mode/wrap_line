@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: wrap_line
+# key: \n\r
+# --
+wrap_line:
+    mov ah, 02h
+    mov dl, 0ah
+    int 21h
+    mov dl, 0dh
+    int 21h
+    xor ax,ax
+    ret

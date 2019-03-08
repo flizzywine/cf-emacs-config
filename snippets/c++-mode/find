@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: find
+# key: find
+# --
+int ${1:min_idx} = 0;
+for(int temp_i=0; temp_i<${2:n}; ++temp_i) {
+	if(${3:ar}[temp_i] $0  $3[$1]) {
+		$1 = temp_i;
+	}
+ }

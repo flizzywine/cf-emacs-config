@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: script
+# key: js
+# --
+<script>
+$(document).ready(function(){
+	$0
+});
+</script>

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: n_size
+# key: nsz
+# --
+int ${1:n} = ${2}.size();

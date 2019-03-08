@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: print_array
+# key: pa
+# --
+for (auto val : $1) {cout<<val<<" ";} cout<<endl;
+$0

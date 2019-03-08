@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: util
+# key: util
+# --
+import java.util.*;
+import java.io.*;

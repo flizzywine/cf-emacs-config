@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: from_import
+# key: fi
+# --
+from $1 import *
+$0

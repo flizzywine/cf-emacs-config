@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: crt
+# key: crt
+# --
+document.createElement("$0")

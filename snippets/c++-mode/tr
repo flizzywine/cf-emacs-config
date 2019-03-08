@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: tr
+# key: tr
+# --
+for(auto ${2:it}= ${1:}.begin(); $2!=$1.end(); ++$2) {
+         $0
+}

@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: oj
+# key: oj
+# --
+#include <iostream>
+#include <vector>
+#include <string>
+#include <assert.h>
+#include <algorithm>
+using namespace std;
+
+void test() {
+  $0
+}
+int main(int argc, char *argv[])
+{
+    freopen("testdata.txt", "r", stdin);
+	test();
+    return 0;
+}

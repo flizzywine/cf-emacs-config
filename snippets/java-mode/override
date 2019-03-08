@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: override
+# key: over
+# --
+@Override
+public void ${1:run}() {
+	$0
+}	

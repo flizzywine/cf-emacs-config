@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: simple_import
+# key: i
+# --
+import $0

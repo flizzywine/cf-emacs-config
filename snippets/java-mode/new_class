@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: new_class
+# key: n
+# --
+${1:class} ${2:name} = new $1($0);

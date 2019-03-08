@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: new_instance
+# key: new
+# --
+${1:t} ${2:obj} = new $1();

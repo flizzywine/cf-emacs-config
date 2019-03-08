@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: try_catch
+# key: tc
+# --
+try{
+} catch(Exception e) {e.printStackTrace();}$0

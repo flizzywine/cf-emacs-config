@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: const_vector
+# key: cv
+# --
+const vector<${1:int}>& $0

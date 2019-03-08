@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: general_head
+# key: bhead
+# --
+#include <iostream>
+#include <stdio.h>
+#include <map>
+#include <vector>
+#include <string>
+#include <stack>
+#include <queue>
+#include <map>
+#include <set>
+#include <utility>
+#include <algorithm>
+#include <sstream>
+#include <numeric>
+using namespace std;
+#define present(c,x) ((c).find(x) != (c).end())
+#define cpresent(c,x) (find(all(c),x) != (c).end())
+
+

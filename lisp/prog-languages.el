@@ -18,7 +18,60 @@
 
 
 ;;java
-(defun cf-java-package ()
+(defun run-java ()
+  "Go to present working dir and focus iterm"
+  (interactive)
+  (do-applescript
+   (concat
+    " tell application \"iTerm2\"\n"
+    "   tell the current session of current window\n"
+	 (format "   write text \"rm ./bin/%s.class\" \n"
+			(substring (file-name-nondirectory (buffer-file-name))
+					   0
+					   (- (length (file-name-nondirectory (buffer-file-name))) 5)))
+					
+	(format "    write text \"%s \"\n"
+			(concat "javac -g -d bin " (file-name-nondirectory (buffer-file-name))))
+    (format "   write text \"java -ea  -cp bin %s\" \n"
+			(substring (file-name-nondirectory (buffer-file-name))
+					   0
+					   (- (length (file-name-nondirectory (buffer-file-name))) 5)))
+    "   end tell\n"
+    " end tell\n"
+    " do shell script \"open -a iTerm\"\n"
+    ))
+  )
+
+(defun iterm-java ()
+  (interactive)
+  (progn (save-buffer)
+		 (iterm-goto-filedir-or-home)
+		 (run-java)))
+
+
+
+
+(defun run-java-Main ()
+  "Go to present working dir and focus iterm"
+  (interactive)
+  (progn
+	(save-buffer)
+  (do-applescript
+   (concat
+    " tell application \"iTerm2\"\n"
+    "   tell the current session of current window\n"
+    "     write text \"rm bin/*.class\" \n"
+    "     write text \"javac -g -d bin *.java\" \n"
+    "     write text \"java -ea -cp bin Main\" \n"
+    "   end tell\n"
+    " end tell\n"
+    " do shell script \"open -a iTerm\"\n"
+    )))
+  )
+
+
+
+(defun java-package ()
   (interactive)
   (progn
 	(save-buffer)
@@ -45,9 +98,9 @@
    (elpy-enable)
    (setq indent-tabs-mode nil)
   (define-key python-mode-map (kbd "C-'") 'elpy-autopep8-fix-code)
-  ;; (define-key python-mode-map (kbd "RET") 'cf-RET-for-python)
-  (define-key python-mode-map (kbd "H-r") 'cf-run-python)
-  (define-key python-mode-map (kbd "H-d") 'cf-debug-python)
+  ;; (define-key python-mode-map (kbd "RET") 'RET-for-python)
+  (define-key python-mode-map (kbd "H-r") 'run-python)
+  (define-key python-mode-map (kbd "H-d") 'debug-python)
   (define-key python-mode-map (kbd "H-=") 'elpy-doc)
    ;; (setq elpy-rpc-python-command "python3")
   ;; (setq python-check-command "/usr/local/bin/pyflakes")
@@ -63,7 +116,7 @@
        python-shell-interpreter-args "--simple-prompt -i")
  (set-variable 'python-indent-offset 4)
 
-;;  (defun cf-RET-for-python ()
+;;  (defun RET-for-python ()
 ;;    (interactive)
 ;;    (progn
 ;; 	 (newline-and-indent)
@@ -71,24 +124,23 @@
 ;; 	 (elpy-autopep8-fix-code)
 ;; 	 (goto-char pos)
 ;; 	 ))
-;;  (defun cf-TAB-for-python ()
+;;  (defun TAB-for-python ()
 ;;    (interactive)
 ;;    (progn
 ;; 	 (indent-for-tab-command)
 ;; 	 (elpy-autopep8-fix-code)
 ;; ))
  
-(defun cf-run-python ()
+(defun run-python ()
   (interactive)
   (progn
 	(elpy-autopep8-fix-code)
 	(save-buffer)
+	(iterm-goto-filedir-or-home)
 	(do-applescript 
 	 (concat
 	  " tell application \"iTerm2\"\n"
 	  "   tell the current session of current window\n"
-
-	  (format "     write text \"cd %s\" \n" (get-file-dir-or-home))
 	  (format "   write text \"ipython3 %s\" \n" (file-name-nondirectory (buffer-file-name)))
 	  "   end tell\n"
 	  " end tell\n"
@@ -96,7 +148,7 @@
       ))))
 
  
-(defun cf-debug-python ()
+(defun debug-python ()
   (interactive)
   (progn
 	(elpy-autopep8-fix-code)
@@ -159,6 +211,11 @@ PS: this function is inspired by Wang Yin."
           'scheme-local-key-binds)
 
 
+(defun run-js ()
+  (interactive)
+  (progn
+	(save-buffer)
+	(xah-open-in-external-app)))
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
@@ -168,21 +225,22 @@ PS: this function is inspired by Wang Yin."
   (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (define-key web-mode-map (kbd "H-r") 'run-js))
 
 (use-package js2-mode
 
   :config
-  (defun cf-run-nodejs ()
+  (defun run-nodejs ()
 	(interactive)
 	(cf-run "node"))
-  (define-key js2-mode-map (kbd "H-r") 'cf-run-nodejs)
+  (define-key js2-mode-map (kbd "H-r") 'run-nodejs)
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
   (setq js2-strict-missing-semi-warning nil)
   )
 
 ;;C/C++
-;; (defun cf-compile-cpp ()
+;; (defun compile-cpp ()
 ;;   (interactive)
 ;;   (save-buffer)
 ;;   (recompile-quietly))
@@ -199,49 +257,7 @@ PS: this function is inspired by Wang Yin."
 
 
 
-(defun iterm-java-run-Main-class ()
-  "Go to present working dir and focus iterm"
-  (interactive)
-  (progn
-	(save-buffer)
-  (do-applescript
-   (concat
-    " tell application \"iTerm2\"\n"
-    "   tell the current session of current window\n"
-    "     write text \"rm *.class\" \n"
-    "     write text \"javac -g *.java\" \n"
-    "     write text \"java -ea Main\" \n"
-    "   end tell\n"
-    " end tell\n"
-    " do shell script \"open -a iTerm\"\n"
-    )))
-  )
 
-(global-set-key (kbd "C-c r") 'iterm-java-run-Main-class)
-
-(defun iterm-debug-jdb ()
-  "Go to present working dir and focus iterm"
-  (interactive)
-  (do-applescript
-   (concat
-    " tell application \"iTerm2\"\n"
-    "   tell the current session of current window\n"
-	 (format "   write text \"rm %s.class\" \n"
-			(substring (file-name-nondirectory (buffer-file-name))
-					   0
-					   (- (length (file-name-nondirectory (buffer-file-name))) 5)))
-					
-	(format "    write text \"%s \"\n"
-			(concat "javac -g " (file-name-nondirectory (buffer-file-name))))
-    (format "   write text \"java -ea  %s\" \n"
-			(substring (file-name-nondirectory (buffer-file-name))
-					   0
-					   (- (length (file-name-nondirectory (buffer-file-name))) 5)))
-    "   end tell\n"
-    " end tell\n"
-    " do shell script \"open -a iTerm\"\n"
-    ))
-  )
 
 (defun iterm-goto-filedir-or-home ()
   "Go to present working dir and focus iterm"
@@ -273,39 +289,16 @@ PS: this function is inspired by Wang Yin."
     " do shell script \"open -a iTerm\"\n"
     ))
   )
-(defun cf-iterm-cpp ()
+(defun iterm-cpp ()
   (interactive)
   (progn (save-buffer)
 		 (iterm-goto-filedir-or-home)
 		 (shell-command (concat "c++ -Wno-c++11-extensions -g -std=c++11 " (file-name-nondirectory (buffer-file-name))))
 		 (iterm-debug-lldb)))
 
-(define-key c++-mode-map (kbd "H-r") 'cf-iterm-cpp)
+(define-key c++-mode-map (kbd "H-r") 'iterm-cpp)
 
 
-
-(defun cf-iterm-java ()
-  (interactive)
-  (progn (save-buffer)
-		 (iterm-goto-filedir-or-home)
-		 (iterm-debug-jdb)))
-(define-key java-mode-map (kbd "H-r") 'cf-iterm-java)
-
-
-(defun cf-open-finder ()
-  (interactive)
-  (iterm-goto-filedir-or-home)
-  (do-applescript 
-   (concat
-    " tell application \"iTerm2\"\n"
-    "   tell the current session of current window\n"
-	"     write text \"open .\" \n" 
-    "   end tell\n"
-    " end tell\n"
-    " do shell script \"open -a iTerm\"\n"
-    )))
-
-(global-set-key (kbd "H-I") 'cf-open-finder)
 
 
 (defun cf-make ()

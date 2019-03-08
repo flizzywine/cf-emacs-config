@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: print_pair
+# key: ppair
+# --
+template<typename T>
+void ppair(T pr){
+    typename T::iterator it = pr.begin();
+    typename T::iterator last = pr.end();
+    while(it != last) {
+        cout<<"("<<it->first<<","<<it->second<<")";
+			if(it != last-1)
+			  cout<<", ";
+		++it;
+    }
+    cout<<endl;
+}

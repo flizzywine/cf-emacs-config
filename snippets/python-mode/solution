@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: solution
+# key: sl
+# --
+if __name__ == '__main__':
+    a=Solution()
+    

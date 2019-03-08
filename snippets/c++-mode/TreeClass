@@ -1,0 +1,65 @@
+# -*- mode: snippet -*-
+# name: TreeClass
+# key: TreeClass
+# --
+class TreeNode
+{
+public:
+    TreeNode *l,*r;
+    int v;
+    TreeNode(int _v):v(_v),l(nullptr),r(nullptr){};
+    
+};
+typedef TreeNode * Tree;
+void inorder(Tree T){
+    if(T){
+        inorder(T->l);
+        cout << T->v << " ";
+        inorder(T->r);
+    }
+}
+void Tree_insert(int v, Tree &T){
+    if(!T){
+        T = new TreeNode(v);
+        return ;
+    }
+    else{
+        if(v<T->v){
+            Tree_insert(v,T->l);
+            
+        }
+        else if(v>T->v){
+            Tree_insert(v,T->r);
+        }
+    }
+}
+void Tree_delete(Tree &T, int v){
+    if(T){
+        if(v > T->v){
+            Tree_delete(T->r,v);
+        }
+        else if(v < T->v){
+            Tree_delete(T->l,v);
+        }
+        else{
+            if(T->r==nullptr){
+                Tree tmp=T;
+                T=T->l;
+                delete tmp;
+            }
+            else if(T->l==nullptr){
+                Tree tmp=T;
+                T=T->r;
+                delete tmp;
+            }
+            else{
+                Tree rep=T->r;
+                while(rep->l){
+                    rep=rep->l;
+                }
+                T->v=rep->v;
+                Tree_delete(T->r,v);
+            }
+        }
+    }
+}

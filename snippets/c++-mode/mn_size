@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: mnsz
+# key: mnsz
+# --
+int n = t.size();
+int m = p.size();

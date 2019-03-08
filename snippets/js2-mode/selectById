@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: selectById
+# key: #
+# --
+document.getElementbyId("$0")

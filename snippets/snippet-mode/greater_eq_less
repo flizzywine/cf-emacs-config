@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: greater_eq_less
+# key: gel
+# --
+if(${1:v} > ${2}){
+    $3
+}
+else if(${1:v} == ${2){
+    $4
+}
+else{
+    $5
+}

@@ -112,7 +112,6 @@
 (use-package osx-lib
   :config
   (global-set-key (kbd "H-I") 'osx-lib-reveal-in-finder)
-  (global-set-key (kbd "H-O") 'osx-lib-find-file-in-finder)
   ;; (global-set-key (kbd "H-i") 'osx-lib-start-terminal)
   ;; (global-set-key (kbd "H-c") 'osx-lib-copy-to-clipboard)
   ;; (global-set-key (kbd "H-v") 'osx-lib-paste-from-clipboard)
@@ -225,7 +224,7 @@ With argument, do this that many times."
   (global-set-key (kbd "C-M-l") 'avy-move-line)
   )
 
-(global-set-key (kbd "H-O") 'cf-open-finder)
+(global-set-key (kbd "H-O") 'xah-open-in-desktop)
 
 ;; (use-package flymake-python-pyflakes
 ;;   :config
@@ -252,6 +251,8 @@ With argument, do this that many times."
    (quote
 	(("1.8" . "/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home"))))
  '(jdee-server-dir "/Users/chenfeng/.emacs.d/jdee-server")
+ '(menu-bar-mode nil)
+ '(ns-auto-hide-menu-bar nil)
  '(org-babel-load-languages (quote ((emacs-lisp . t) (python . t))))
  '(package-selected-packages
    (quote
@@ -268,27 +269,26 @@ With argument, do this that many times."
  '(flymake-warning ((t nil))))
 
 
-(define-key global-map (kbd "RET") 'newline-and-indent)
-(define-key global-map (kbd "H-M-g") 'goto-line)
-
-
-
-
-
 
 (use-package recentf
   :config
   (recentf-mode 1)
   (setq recentf-max-menu-item 10)
-  (global-set-key (kbd "H-r") 'helm-recentf)
   )
+
 (use-package ace-window
   :config
-  (global-set-key (kbd "H-`") 'ace-delete-other-windows)
-  (global-set-key (kbd "H-1") 'ace-delete-window)
-  (global-set-key (kbd "H-q") 'ace-window)   
+  (global-set-key (kbd "H-`") 'ace-delete-window)
+  ;; (global-set-key (kbd "H-1") 'ace-delete-other-windows)
+  (global-set-key (kbd "H-q") 'ace-window)
+  )
 (global-set-key (kbd "M-c") 'upcase-char)
 (global-set-key (kbd "C-s") 'swiper)
 
+
+;; java kdbs
+(define-key java-mode-map (kbd "H-r") 'iterm-java)
+(define-key java-mode-map (kbd "C-c r") 'run-java-Main)
+;;
 
 

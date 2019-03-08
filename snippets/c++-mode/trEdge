@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: trEdge
+# key: trEdge
+# --
+for(auto it=adj[${1:u}].edges.begin(); it!=adj[$1].edges.end(); ++it) {
+         $0        
+}

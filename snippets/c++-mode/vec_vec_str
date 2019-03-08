@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: vector_vector_string
+# key: vvs
+# --
+vector<vector<string> > $0

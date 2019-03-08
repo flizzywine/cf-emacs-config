@@ -1,0 +1,4 @@
+(
+ (:id "sha1:b737edbc4501af013204d0acbdf810aaa17fb9ec" :fingerprint "sha1:d0:7a:d1:a7:21:13:c8:a4:f0:65:4f:52:d8:93:29:30:85:b4:3c:65" :host "himg.bdimg.com:443" :conditions (:unknown-ca :invalid))
+ (:id "sha1:bba4fe77bfd65b0c6c9ef9919fc07bc31534f1f5" :fingerprint "sha1:d0:7a:d1:a7:21:13:c8:a4:f0:65:4f:52:d8:93:29:30:85:b4:3c:65" :host "jingyan.baidu.com:443" :conditions (:unknown-ca :invalid))
+)

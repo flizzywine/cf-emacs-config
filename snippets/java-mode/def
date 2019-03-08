@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: def
+# key: def
+# --
+static public void ${1:name}($2) {
+       $0
+}

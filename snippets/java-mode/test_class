@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: test_class
+# key: test
+# --
+import java.util.*;
+import java.io.*;
+
+public class Test{
+	public static void main(String args[]){
+		$0
+	}
+}

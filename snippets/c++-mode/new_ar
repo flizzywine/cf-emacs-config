@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: new_ar
+# key: nar
+# --
+int ar[]={$0};
+int n = sizeof(ar)/sizeof(ar[0]);

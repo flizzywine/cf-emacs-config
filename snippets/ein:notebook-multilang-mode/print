@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jupyter_print
+# key: pr
+# --
+print($0)

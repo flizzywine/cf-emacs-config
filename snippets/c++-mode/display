@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: print_sequence
+# key: pv
+# --
+template<typename T>
+void pv(T seq){
+    typename T::iterator it = seq.begin();
+    typename T::iterator last = seq.end();
+    while(it != last) {
+        cout<< *it<<" ";
+        ++it;
+    }
+    cout<<endl;
+}

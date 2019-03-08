@@ -1,0 +1,50 @@
+# -*- mode: snippet -*-
+# name: pygame
+# key: pygame
+# --
+try:
+    import random, time,sys
+    import pygame
+    from pygame.locals import *
+except:
+    print("modules not imported")
+    sys.exit()
+
+pygame.init()
+WIDTH = 800
+HEIGHT = 800
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("game window")
+
+
+def start_scene():
+    screen.fill((150, 150, 150))
+    pygame.display.update()
+    while True:
+        for e in pygame.event.get():
+	    if e.type == QUIT:
+		sys.exit()
+
+def main():
+
+    background = pygame.Surface(screen.get_size())
+    background.convert()
+    background.fill((20, 110, 30))
+
+    font = pygame.font.Font(None, 36)
+    text = font.render("hello there", 1, (10, 10, 10))
+    text_pos = text.get_rect()
+    text_pos.centerx = background.get_rect().centerx
+    background.blit(text, text_pos)
+
+    screen.blit(background, (0, 0))
+    pygame.display.flip()
+    while 1:
+        for e in pygame.event.get():
+            if e.type == QUIT:
+                return
+
+
+if __name__ == '__main__':
+    start_scene()
+    main()

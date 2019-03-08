@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: inf_min
+# key: inf_min
+# --
+INT_MIN

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: list
+# key: al
+# --
+ArrayList<${1:Integer}> $2 = new ArrayList<$1>();

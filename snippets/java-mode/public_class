@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: public_class
+# key: pc
+# --
+public class $1{
+    $0           
+}

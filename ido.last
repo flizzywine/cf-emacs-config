@@ -1,0 +1,46 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/chenfeng/files/jizu/jizu3-4/" . "jizu3-4/")
+ ("/Users/chenfeng/files/jizu/" . "jizu3-4/")
+ ("/Users/chenfeng/files/" . "jizu/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/chenfeng/files/jizu/jizu3-4/jizu3-4/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ 
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/chenfeng/files/jizu/jizu3-4/jizu3-4/a.out.dSYM/Contents/Resources/" (23276 27887 0 0) "DWARF/" "../" "./")
+
+ ("/Users/chenfeng/files/jizu/jizu3-4/jizu3-4/a.out.dSYM/Contents/" (23276 27887 0 0) "Resources/" "Info.plist" "../" "./")
+
+ ("/Users/chenfeng/files/jizu/jizu3-4/jizu3-4/a.out.dSYM/" (23276 27887 0 0) "Contents/" "../" "./")
+
+ ("/Users/chenfeng/files/jizu/jizu3-4/jizu3-4/" (23277 39346 0 0) "main.cpp" "jizu3-4.zip" "GTAGS" "GRTAGS" "GPATH" "cache.hpp" "biji" "a.out.dSYM/" "a.out" ".DS_Store" "../" "./")
+
+ ("/Users/chenfeng/files/jizu/jizu3-4/" (23276 14380 0 0) "jizu3-4.xcodeproj/" "jizu3-4/" ".DS_Store" "../" "./")
+
+ ("/Users/chenfeng/files/jizu/jizu3-3/" (23267 15071 0 0) "jizu3-3.zip" "jizu3-3.xcodeproj/" "jizu3-3/" ".DS_Store" "../" "./")
+
+ ("/Users/chenfeng/files/jizu/" (23274 50390 0 0) "未命名文件夹/" "unit3/" "unit2/" "srt2.gz" "srt1.xlsx.gz" "srt.py.gz" "my/" "jizu3-4/" "jizu3-3/" "info/" "Emulator.zip.gz" "Emulator-master/" "3-2/" ".DS_Store" "../" "./")
+
+ ("/Users/chenfeng/files/" (23277 43482 0 0) "微机/" "xv6/" "Xcode/" "unixTools/" "test/" "py/" "Project-Euler-solutions-master/" "pearl/" "leetcode-master/" "js/" "Job Interview Report ChenFeng.docx" "jizu/" "homework/" "evolOfCpp/" "english/" "DataBaseDesign/" "cppHomeWork/" "cpp/" "CLRS/" "Calculator/" "asm32.asm" "asm/" "articles/" "algo/" "500lines/" ".DS_Store" "../" "./")
+
+ ("/Users/chenfeng/files/cpp/" (23282 18108 0 0) "zigZagConversion/" "wordSearch/" "wordPattern/" "wordLadder/" "wordBreak/" "wildcardMatching/" "wiggleSubsequence/" "wiggleSort/" "verifyPreorderSerializationOfABinaryTree/" "validSudoku/" "validParentheses/" "validPalindrome/" "validNumber/" "validateBinarySearchTree/" "UTF8Validation/" "uniquePaths/" "uniqueBinarySearchTrees/" "uglyNumber/" "twoSum/" "triangle/" "trappingRainWater/" "totalHammingDistance/" "topKFrequentElements/" "thirdMaximumNumber/" "theSkylineProblem/" "textJustification/" "symmetricTree/" "swapNodesInPairs/" "surroundedRegions/" "superUglyNumber/" "sumRootToLeafNumber/" "sumOfLeftLeaves/" "summaryRanges/" "sudokuSolver/" "substringWithConcatenationOfAllWords/" "subsets/" "strStr/" "stringToIntegerAtoi/" "sqrt/" "splitArrayLargestSum/" "spiralMatrix/" "sortList/" "sortColors/" "slidingWindowMaximum/" "singleNumber/" "SimulateCache/" "simplifyPath/" "shuffleAnArray/" "shortestPalindrome/" "setMatrixZeroes/" "serializeAndDeserializeBinaryTree/" "searchInsertPosition/" "searchInRotatedSortedArray/" "searchForRange/" "search2DMatrix/" "scrambleString/" "sameTree/" "rotateList/" "rotateImage/" "rotateFunction/" "rotateArray/" "romanToInteger/" "reverseWordsInAString/" "reverseVowelsOfAString/" "reverseString/" "reverseNodesInKGroup/" "reverseLinkedList/" "reverseInteger/" "reverseBits/" "restoreIPAddresses/" "repeatedDNASequences/" "reorderList/" "removeNthNodeFromEndOfList/" "removeLinkedListElements/" "removeKDigits/" "removeInvalidParentheses/" "removeElement/" "removeDuplicatesFromSortedList/" "removeDuplicatesFromSortedArray/" "removeDuplicateLetters/" "regularExpressionMatching/" "rectangleArea/" "recoverBinarySearchTree/" "reconstructItinerary/" "readNCharactersGivenRead4/" "ransomNote/" "rangeSumQuery2D-Immutable/" "rangeSumQuery-Immutable/" "randomPickIndex/" "queueReconstructionByHeight/" "productOfArrayExceptSelf/" "powerOfTwo/" "powerOfThree/" "powerOfFour/" "pow/" "populatingNextRightPointersInEachNode/" "plusOne/" "permutationSequence/" "permutations/" "perfectSquares/" "perfectRectangle/" "peekingIterator/" "pathSum/" "patchingArray/" "pascalTriangle/" "partitionList/" "palindromePartitioning/" "palindromePairs/" "palindromeNumber/" "palindromeLinkedList/" "oneEditDistance/" "oddEvenLinkedList/" "numberOfIslands/" "numberOfDigitOne/" "numberOf1Bits/" "nthDigit/" "nQueens/" "nimGame/" "nextPermutation/" "multiplyStrings/" "moveZeroes/" "missingRanges/" "missingNumber/" "minStack/" "miniParser/" "minimumWindowSubstring/" "minimumSizeSubarraySum/" "minimumPathSum/" "minimumHeightTrees/" "minimumDepthOfBinaryTree/" "mergeTwoSortedList/" "mergeTwoSortedArray/" "mergeKSortedLists/" "mergeIntervals/" "medianOfTwoSortedArrays/" "maxPointsOnALine/" "maximumSubArray/" "maximumProductSubarray/" "maximumProductOfWordLengths/" "maximumGap/" "maximumDepthOfBinaryTree/" "maximalSquare/" "maximalRectangle/" "majorityElement/" "LRUCache/" "lowestCommonAncestorOfABinaryTree/" "lowestCommonAncestorOfABinarySearchTree/" "longestValidParentheses/" "longestSubstringWithoutRepeatingCharacters/" "longestSubstringWithAtMostTwoDistinctCharacters/" "longestSubstringWithAtLeastKRepeatingCharacters/" "longestPalindromicSubstring/" "longestPalindrome/" "longestIncreasingSubsequence/" "longestIncreasingPathInAMatrix/" "longestConsecutiveSequence/" "longestCommonPrefix/" "longestAbsoluteFilePath/" "linkedListRandomNode/" "linkedListCycle/" "lexicographicalNumbers/" "letterCombinationsOfAPhoneNumber/" "lengthOfLastWord/" "learn/" "largestRectangleInHistogram/" "largestNumber/" "kthSmallestElementInaBST/" "kthLargestElementInAnArray/" "jumpGame/" "isSubsequence/" "isomorphicStrings/" "invertBinaryTree/" "intersectionOfTwoLinkedLists/" "intersectionOfTwoArrays/" "interleavingString/" "integerToRoman/" "integerToEnglishWords/" "integerReplacement/" "integerBreak/" "insertionSortList/" "insertInterval/" "insertDeleteGetRandom/" "increasingTripletSubsequence/" "implementTriePrefixTree/" "implementStackUsingQueues/" "implementQueueUsingStacks/" "houseRobber/" "happyNumber/" "h-Index/" "grayCode/" "generateParentheses/" "gasStation/" "frogJump/" "fractionToRecurringDecimal/" "flattenNestedListIterator/" "flattenBinaryTreeToLinkedList/" "fizzBuzz/" "firstUniqueCharacterInAString/" "firstMissingPositive/" "firstBadVersion/" "findTheDuplicateNumber/" "findTheDifference/" "findPeakElement/" "findMinimumInRotatedSortedArray/" "findMedianFromDataStream/" "factorialTrailingZeroes/" "expressionAddOperators/" "excelSheetColumnTitle/" "excelSheetColumnNumber/" "evaluateReversePolishNotation/" "evaluateDivision/" "essential/" "eliminationGame/" "editDistance/" "dungeonGame/" "divideTwoInt/" "distinctSubsequences/" "differentWaysToAddParentheses/" "deleteNodeInALinkedList/" "decodeWays/" "decodeString/" "createMaximumNumber/" "courseSchedule/" "countPrimes/" "countOfSmallerNumbersAfterSelf/" "countOfRangeSum/" "countingBits/" "countCompleteTreeNodes/" "countAndSay/" "copyListWithRandomPointer/" "convertSortedListToBinarySearchTree/" "convertSortedArrayToBinarySearchTree/" "convertANumberToHexadecimal/" "containsDuplicate/" "containerWithMostWater/" "constructBinaryTreeFromPreorderAndInorderTraversal/" "constructBinaryTreeFromInorderAndPostorderTraversal/" "consoleCal/" "compareVersionNumbers/" "combinationSumIV/" "combinationSum/" "combinations/" "coinChange/" "cloneGraph/" "climbStairs/" "candy/" "Calculator/" "burstBalloons/" "bullsAndCows/" "bulbSwitcher/" "bitwiseANDOfNumbersRange/" "binaryWatch/" "binaryTreeZigzagLevelOrderTraversal/" "binaryTreeUpsideDown/" "binaryTreeRightSideView/" "binaryTreePreorderTraversal/" "binaryTreePostorderTraversal/" "binaryTreePaths/" "binaryTreeMaximumPathSum/" "binaryTreeLevelOrderTraversal/" "binaryTreeInorderTraversal/" "binarySearchTreeIterator/" "bestTimeToBuyAndSellStock/" "basicCalculator/" "balancedBinaryTree/" "arithmeticSlices/" "anagrams/" "addTwoNumbers/" "addStrings/" "additiveNumber/" "addDigits/" "addBinary/" "addAndSearchWord/" "a.out.dSYM/" "a.out" "4Sum/" "3SumClosest/" "3Sum/" "1.s" "1.c" "1.asm" ".DS_Store" "../" "./")
+
+ ("/Users/chenfeng/files/cpp/SimulateCache/" (23282 18746 0 0) "cache2/" "Cache/" "../" "./")
+
+ ("/Users/chenfeng/files/cpp/SimulateCache/Cache/" (23282 19859 0 0) "utility.h" "utility.cpp" "README.md" "Makefile" "main.cpp" "LRUcache.cpp" "LFUcache.cpp" "GTAGS" "GRTAGS" "GPATH" "cacheWorkspace.xcworkspace/" "cache.h" ".projectile" ".git/" ".DS_Store" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

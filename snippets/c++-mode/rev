@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: rev
+# key: rev
+# --
+for(int i=$1; i<$2; i++){
+    $0
+}

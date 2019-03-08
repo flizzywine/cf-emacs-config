@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: cpp_head
+# key: head
+# --
+#include <iostream>
+#include <vector>
+#include <string>
+#include <assert.h>
+using namespace std;
+$0
+int main(int argc, char *argv[])
+{
+    
+    return 0;
+}
+

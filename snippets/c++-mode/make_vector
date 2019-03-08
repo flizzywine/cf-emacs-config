@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: make_vecotr
+# key: makeVec
+# --
+int ar[] = {$0};
+int arSize = sizeof(ar)/sizeof(int);
+vector<int> vi(ar, ar+arSize);

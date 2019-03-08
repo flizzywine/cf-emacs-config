@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: author
+# key: /*
+# --
+/**
+ * @author 陈锋
+ * @id 19216215
+ * @time ${2:t}
+ * @ex ${1:n}
+ * 
+ *
+**/

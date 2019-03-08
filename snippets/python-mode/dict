@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dict
+# key: dict
+# --
+d = dict({'a':1, 'b':2})

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: inoreder
+# key: inoreder
+# --
+void inorder(Tree T){
+    if(T){
+        inorder(T->l);
+        cout << T->v << " ";
+        inorder(T->r);
+    }
+}

@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: winMain
+# key: winMain
+# --
+#include <Windows.h>
+#include <tchar.h>
+
+int WINAPI _tWinMain(HINSTANCE hInstance,
+					HINSTANCE preInstance,
+					LPTSTR lpLine,
+					int nCmdShow)
+{
+	MessageBox(NULL,_T(""), _T(""), MB_OKCANCEL);
+    return 0;
+}
+

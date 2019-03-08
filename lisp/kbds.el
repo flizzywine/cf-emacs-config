@@ -146,6 +146,9 @@
 	 (define-key map "\e[1;P56" (kbd "H-<f12>"))
 	 ))
 
+
+(define-key global-map (kbd "RET") 'newline-and-indent)
+(define-key global-map (kbd "H-M-g") 'goto-line)
 (provide 'kbds)
 
 

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: winBox
+# key: winBox
+# --
+MessageBox(NULL,_T("log"), _T("$1"), MB_OKCANCEL);$0
