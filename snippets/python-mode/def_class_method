@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: def_class_method
-# key: def
+# key: f
 # --
 def ${1:name}(self$2):
 	$0

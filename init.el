@@ -1,3 +1,4 @@
+
 (eval-when-compile
   ;; Following line is not needed if use-package.el is in ~/.emacs.d
   (add-to-list 'load-path "elpa/use-package-2.3")
@@ -17,43 +18,86 @@
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "/Library/Frameworks/Python.framework/Versions/3.6/bin")
 
+
 (require 'prog-languages)
 (require 'kbds)
 (require 'modes-and-vars)
 (require 'snippets)
-(require 'spacemacs-theme)
-
 (require 'exec-path-from-shell)
-(require 'smart-compile)
+
+;;face
+;; (require 'spacemacs-theme)
+(require 'doom-themes)
+
+  ;; Global settings (defaults)
+(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+  ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each
+  ;; theme may have their own settings.
+(load-theme 'doom-one t)
+
+
+;; ;;   ;; Enable flashing mode-line on errors
+;; (doom-themes-visual-bell-config)
+
+;; ;;   ;; Enable custom neotree theme
+;; (doom-themes-neotree-config)  ; all-the-icons fonts must be installed!
+
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
+
+
+
 
 (set-frame-font "-*-Monaco-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
 (set-default-font "-*-Monaco-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
+(set-frame-font "Monaco")
+;;
+
 
 (exec-path-from-shell-initialize)
 (require 'bind-key)
 (bind-key* (kbd "M-.") 'jump-to-mark)
 (bind-key* (kbd "M-h") 'backward-delete-word)
 
-
-
+(require 'helm)
 (use-package helm
   :config
   (helm-mode 1)
   (global-set-key (kbd "M-x") 'helm-smex)
   (global-set-key (kbd "M-r") 'helm-recentf)
+  (global-set-key (kbd "M-,") 'helm-buffers-list)
+  (global-set-key (kbd "H-C-o") 'helm-buffers-list)
   (global-set-key (kbd "H-<return>") 'ace-jump-helm-line)
-  
   (setq helm-ff-init  1)
+  ;;helm-swoop
   )
 
+
+
+(use-package ace-jump-mode
+  :config
+  (global-set-key (kbd "C-j") 'ace-jump-word-mode)
+  (global-set-key (kbd "M-j") 'ace-jump-line-mode))
+
+(use-package helm-fuzzier
+  :config
+  (helm-fuzzier-mode 1))
+
+(use-package helm-swoop
+  :config
+  (global-set-key (kbd "H-F") 'helm-multi-swoop-current-mode)
+  (setq helm-multi-swoop-edit-save t)
+  (setq helm-swoop-move-to-line-cycle t)) 
 
 ;; (use-package flymake
 ;;   :config
 ;;   (add-hook 'java-mode-hook 'flymake-mode-on))
-(use-package helm-swoop
-  :config
-  )
-(global-unset-key (kbd "<tab>"))
+
+
+
 (global-set-key (kbd "<tab>") 'indent-for-tab-command)
 
 
@@ -95,20 +139,21 @@
   (global-set-key (kbd "H-9") 'crux-swap-windows)
   (global-set-key (kbd "H-K") 'crux-kill-other-buffers)
   (global-set-key (kbd "C-l") 'crux-kill-whole-line)
-  ;; (global-set-key (kbd "H-l") 'crux-duplicate-current-line-or-region)
+  (global-set-key (kbd "M-r") 'crux-recentf-find-file)
+  (global-set-key (kbd "<f2>") 'crux-find-user-init-file)
+  ;; (global-set-key (kbd "<f2>") 'crux-find-user-init-file)
+
   (global-set-key (kbd "M-k") 'crux-kill-line-backwards)
-  
   
   (global-set-key (kbd "C-o") 'crux-smart-open-line)
   (global-set-key (kbd "C-S-o") 'crux-smart-open-line-above)
   (global-set-key (kbd "C-c n") 'crux-cleanup-buffer-or-region)
   (global-set-key (kbd "C-,") 'crux-switch-to-previous-buffer)
-  
-  ;; (global-set-key (kbd "H-l") 'crux-duplicate-current-line-or-region)
+  (global-set-key (kbd "M-k") 'crux-kill-line-backwards)
+  (global-set-key (kbd "C-l") 'crux-kill-whole-line)
+ )
 
-  )
 
-;
 (use-package osx-lib
   :config
   (global-set-key (kbd "H-I") 'osx-lib-reveal-in-finder)
@@ -146,18 +191,18 @@ Version 2017-07-25"
 (add-hook 'c-mode-hook
 		  (lambda ()(modify-syntax-entry ?_ "w")))
 
-(use-package projectile
-  :config
-  (projectile-mode 1)
-  (global-set-key (kbd "M-,") 'projectile-find-other-file)
-  (global-set-key (kbd "C-'") 'projectile-find-file-dwim)
-  (setq projectile-enable-caching t)
-  )
+;; (use-package projectile
+;;   :config
+;;   (projectile-mode 1)
+;;   (global-set-key (kbd "M-,") 'projectile-find-other-file)
+;;   (global-set-key (kbd "C-'") 'projectile-find-file-dwim)
+;;   (setq projectile-enable-caching t)
+;;   )
 
 (use-package real-auto-save
   :config
   (add-hook 'prog-mode-hook 'real-auto-save-mode)
-  (setq real-auto-save-interval 10)) ;; in seconds
+  (setq real-auto-save-interval 30)) ;; in seconds
 
 (use-package evil
   :config
@@ -168,16 +213,17 @@ Version 2017-07-25"
   (define-key evil-normal-state-map (kbd "M-z") 'evil-change-to-initial-state)
 )
 
-(use-package ace-jump-mode
-  :config
-  (global-set-key (kbd "C-j") 'ace-jump-char-mode)
-  (global-set-key (kbd "M-j") 'ace-jump-word-mode)
-  )
+;; (use-package ace-jump-mode
+;;   :config
+;;   (global-set-key (kbd "C-j") 'ace-jump-char-mode)
+;;   (global-set-key (kbd "M-j") 'ace-jump-word-mode)
+;;   )
 
-(use-package evil-surround
-  :ensure t
-  :config
-  (global-evil-surround-mode 1))
+;; (use-package evil-surround
+;;   :ensure t
+;;   :config
+;;   (global-evil-surround-mode 1))
+
 (defun rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
@@ -207,9 +253,9 @@ With argument, do this that many times."
   (interactive "p")
   (delete-word (- arg)))
 
-(global-set-key (kbd "M-h") 'backward-delete-word)
 
-(set-frame-font "Monaco")
+
+
 
 (defun recompile-quietly ()
   "Re-compile without changing the window configuration."
@@ -224,7 +270,7 @@ With argument, do this that many times."
   (global-set-key (kbd "C-M-l") 'avy-move-line)
   )
 
-(global-set-key (kbd "H-O") 'xah-open-in-desktop)
+
 
 ;; (use-package flymake-python-pyflakes
 ;;   :config
@@ -244,6 +290,9 @@ With argument, do this that many times."
 	 company-capf company-bbdb company-nxml company-css company-cmake company-files
 	 (company-gtags company-etags)
 	 company-oddmuse)))
+ '(custom-safe-themes
+   (quote
+	("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(elpy-syntax-check-command "/usr/local/bin/flake8")
  '(flymake-gui-warnings-enabled nil)
  '(indent-tabs-mode t)
@@ -256,8 +305,9 @@ With argument, do this that many times."
  '(org-babel-load-languages (quote ((emacs-lisp . t) (python . t))))
  '(package-selected-packages
    (quote
-	(ace-jump-helm-line helm avy ace-isearch evil-leader auctex markdown-mode+ markdown-preview-eww dash-at-point ein helm-pydoc pydoc pydoc-info flymake javadoc-lookup w3m xwidgete ace-jump-mode realgud nyan-mode elpy pylint web-mode use-package swiper-helm spacemacs-theme spacemacs-common smartparens smart-mode-line shift-text request-deferred replace-symbol real-auto-save paredit-everywhere osx-lib markdown-mode magit js2-mode irony ioccur helm-swoop helm-smex helm-projectile helm-gtags helm-c-yasnippet helm-c-moccur helm-ag go-mode ggtags function-args flycheck-pos-tip flx-isearch flx-ido find-file-in-project f evil-surround crux company-statistics company-c-headers bash-completion anaphora ace-window)))
+	(company-lsp lsp-ui dap-mode lsp-mode realgud-ipdb realgud-jdb realgud-lldb ivy counsel-etags helm-etags-plus ox-pandoc projectile-speedbar cnfonts ipython-shell-send live-py-mode doom-themes doom-modeline simpleclip markdown-toc js-comint osx-browse zencoding-mode company-web-html company-web-jade company-web vue-mode swift3-mode helm-swoop helm-fuzzier ace-jump-helm-line helm avy ace-isearch evil-leader auctex markdown-mode+ markdown-preview-eww dash-at-point ein helm-pydoc pydoc pydoc-info flymake javadoc-lookup w3m xwidgete ace-jump-mode realgud nyan-mode elpy pylint web-mode use-package swiper-helm spacemacs-theme spacemacs-common smartparens smart-mode-line shift-text request-deferred replace-symbol real-auto-save paredit-everywhere osx-lib markdown-mode magit js2-mode irony ioccur helm-smex helm-projectile helm-gtags helm-c-yasnippet helm-c-moccur helm-ag go-mode ggtags function-args flycheck-pos-tip flx-isearch flx-ido find-file-in-project f evil-surround crux company-statistics company-c-headers bash-completion anaphora ace-window)))
  '(python-indent-offset 2)
+ '(safe-local-variable-values (quote ((mangle-whitespace . t))))
  '(tab-always-indent t)
  '(tab-width 4))
  
@@ -268,27 +318,79 @@ With argument, do this that many times."
  ;; If there is more than one, they won't work right.
  '(flymake-warning ((t nil))))
 
-
-
-(use-package recentf
-  :config
-  (recentf-mode 1)
-  (setq recentf-max-menu-item 10)
-  )
-
-(use-package ace-window
-  :config
-  (global-set-key (kbd "H-`") 'ace-delete-window)
-  ;; (global-set-key (kbd "H-1") 'ace-delete-other-windows)
-  (global-set-key (kbd "H-q") 'ace-window)
-  )
-(global-set-key (kbd "M-c") 'upcase-char)
-(global-set-key (kbd "C-s") 'swiper)
+;; (use-package ace-window
+;;   :config
+;;   (global-set-key (kbd "H-`") 'ace-delete-window)
+;;   ;; (global-set-key (kbd "H-1") 'ace-delete-other-windows)
+;;   (global-set-key (kbd "H-q") 'ace-window)
+;;   )
 
 
 ;; java kdbs
 (define-key java-mode-map (kbd "H-r") 'iterm-java)
 (define-key java-mode-map (kbd "C-c r") 'run-java-Main)
-;;
+
+;; find and search and replace
+;; (global-set-key (kbd "M-j") 'evil-find-char)
+(global-set-key (kbd "C-s") 'swiper)
+
+;;jupyter
+;; (use-package ein
+;;   :config
+;;   (add-hook ein:notebook-multilang-mode-hook )
+
+;; (use-package ein
+;;   :config
+;; (define-key ein:notebook-multilang-mode-map (kbd "<C-return>") 'ein:worksheet-execute-cell)
+;; (define-key  ein:notebook-multilang-mode-map (kbd "H-s") 'ein:notebook-save-notebook-command))
+
+;; (use-package nodejs-repl
+;;   :config
+;;   (add-hook 'js2-mode-hook
+;;             (lambda ()
+;;               (define-key js2-mode-map (kbd "H-e") 'nodejs-repl-send-last-expression)
+;;               (define-key js2-mode-map (kbd "C-c C-r") 'nodejs-repl-send-region)
+;;               (define-key js2-mode-map (kbd "C-c C-l") 'nodejs-repl-load-file)
+;;               (define-key js2-mode-map (kbd "C-c C-z") 'nodejs-repl-switch-to-repl))))
+
+(use-package js-comint
+  :config
+  (add-hook 'js2-mode-hook
+            (lambda ()
+			  (define-key js2-mode-map (kbd "H-e") 'js-send-last-sexp)
+			  (define-key js2-mode-map (kbd "H-E") 'js-send-region)
+			  (define-key js2-mode-map (kbd "H-r") 'js-send-buffer)
+  )))
+
+(global-set-key (kbd "H-d") 'dired)
 
 
+(eval-after-load "org-mode"
+  '(progn
+     (define-key org-mode-map   (kbd "C-,") 'crux-switch-to-previous-buffer)
+    ))
+
+
+(use-package ivy
+  :config
+  (global-set-key (kbd "C-t") 'counsel-etags-grep))
+
+
+;; (use-package company-lsp
+;;     :config
+;;     ;; 设置 company-lsp 为后端
+;;     (push 'company-lsp company-backends))
+
+
+;; (use-package lsp-ui
+;;     :init
+;;     ;; 启用 lsp-ui
+;;     (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;;     ;; 启用 flycheck
+;;     (add-hook 'python-mode-hook 'flycheck-mode))
+
+
+;; (lsp-register-client
+;;  (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
+;;                   :major-modes '(python-mode)
+;;                   :server-id 'pyls))

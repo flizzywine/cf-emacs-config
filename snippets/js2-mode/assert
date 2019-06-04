@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: assert
+# key: a
+# --
+console.assert($0)

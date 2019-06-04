@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dataWeChat
+# key: d
+# --
+evt.currentTarget.dataset.$0

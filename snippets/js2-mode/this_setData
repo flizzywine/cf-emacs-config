@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: this.setData
+# key: s
+# --
+this.setData($0)

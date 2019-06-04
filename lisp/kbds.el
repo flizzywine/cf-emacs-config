@@ -16,6 +16,8 @@
 (global-set-key [(hyper z)] 'undo)
 (global-set-key [(hyper e)] 'eval-last-sexp)
 (global-set-key (kbd "H-o") 'helm-find-files)
+(global-set-key (kbd "<space>-o") 'helm-find-files)   
+
 (global-set-key (kbd "H-p") 'package-list-packages)
 (global-set-key (kbd "H-i") 'iterm-goto-filedir-or-home)
 
@@ -53,10 +55,10 @@
 (global-set-key (kbd "H-2") 'split-window-right)
 (global-set-key (kbd "H-`") 'delete-window)
 
-;; (global-set-key (kbd "C-S-n") 'windmove-down)
-;; (global-set-key (kbd "C-S-p") 'windmove-up)
-;; (global-set-key (kbd "C-S-b") 'windmove-left)
-;; (global-set-key (kbd "C-S-f") 'windmove-right)
+(global-set-key (kbd "H-<down>") 'windmove-down)
+(global-set-key (kbd "H-<up>") 'windmove-up)
+(global-set-key (kbd "H-<left>") 'windmove-left)
+(global-set-key (kbd "H-<right>") 'windmove-right)
 
 (global-set-key (kbd "H-M-g") 'goto-line)
 
@@ -155,4 +157,5 @@
 (global-set-key (kbd "M-h") 'backward-delete-word)
 (global-set-key (kbd "H-O") 'xah-open-in-desktop)
 (global-set-key (kbd "M-c") 'upcase-char)
+
 (provide 'kbds)

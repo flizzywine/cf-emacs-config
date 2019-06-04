@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bootstrap
+# key: bootstrap
+# --
+<link rel="stylesheet" href="bootstrap.min.css">

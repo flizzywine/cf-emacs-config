@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: timeClock
+# key: clock
+# --
+clock_t start = clock();
+cout<<(double)1000*(clock()-start)/CLOCKS_PER_SEC<<"ms"<<endl;

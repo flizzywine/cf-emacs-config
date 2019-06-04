@@ -2,6 +2,7 @@
 # name: new_class
 # key: cls
 # --
-class ${1:name}:
-    def __init__(self$2):
-	$0
+
+class ${1:name}(${2:object}):
+    def __init__(self):
+		${0:pass}

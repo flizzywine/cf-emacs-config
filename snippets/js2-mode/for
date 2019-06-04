@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: for
+# key: f
+# --
+for(let ${1:i}; i< $0; i++) {
+
+}

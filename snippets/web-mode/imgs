@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: imgs
+# key: imgs
+# --
+<img src="{{url_for('static', filename='imgs/$0')}}" />

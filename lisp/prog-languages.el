@@ -17,30 +17,29 @@
 
 
 
-;;java
-(defun run-java ()
-  "Go to present working dir and focus iterm"
+(defun cf-run-java ()
   (interactive)
-  (do-applescript
-   (concat
-    " tell application \"iTerm2\"\n"
-    "   tell the current session of current window\n"
-	 (format "   write text \"rm ./bin/%s.class\" \n"
-			(substring (file-name-nondirectory (buffer-file-name))
-					   0
-					   (- (length (file-name-nondirectory (buffer-file-name))) 5)))
-					
-	(format "    write text \"%s \"\n"
-			(concat "javac -g -d bin " (file-name-nondirectory (buffer-file-name))))
-    (format "   write text \"java -ea  -cp bin %s\" \n"
-			(substring (file-name-nondirectory (buffer-file-name))
-					   0
-					   (- (length (file-name-nondirectory (buffer-file-name))) 5)))
-    "   end tell\n"
-    " end tell\n"
-    " do shell script \"open -a iTerm\"\n"
-    ))
-  )
+  (progn (save-buffer)
+		 (iterm-goto-filedir-or-home)
+		 (do-applescript
+		  (concat
+		   " tell application \"iTerm2\"\n"
+		   "   tell the current session of current window\n"
+		   
+		   (format "    write text \"%s \"\n"
+				   (concat "javac -g " (file-name-nondirectory (buffer-file-name))))
+		   (format "   write text \"java -ea %s\" \n"
+				   (substring (file-name-nondirectory (buffer-file-name))
+							  0
+							  (- (length (file-name-nondirectory (buffer-file-name))) 5)))
+		   "   end tell\n"
+		   " end tell\n"
+		   " do shell script \"open -a iTerm\"\n"
+		   ))
+		 ))
+
+;;(define-key java-mode-map (kbd "H-r") 'cf-run-java)
+
 
 (defun iterm-java ()
   (interactive)
@@ -92,46 +91,49 @@
       ))))
 
 
+(defun select-current-line ()
+  "Select the current line"
+  (interactive)
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position))
+  (exchange-point-and-mark)
+  )
+(global-set-key (kbd "M-H-l") 'select-current-line)
+
 
  (use-package elpy
    :config
    (elpy-enable)
    (setq indent-tabs-mode nil)
    (define-key python-mode-map (kbd "H-;") 'elpy-autopep8-fix-code)
+   (define-key python-mode-map (kbd "C-o") 'elpy-open-and-indent-line-below)
+   (define-key python-mode-map (kbd "C-S-o") 'elpy-open-and-indent-line-above)
+   (define-key python-mode-map (kbd "M-<return>") 'ipython-shell-send-region)
+   
+   (define-key python-mode-map (kbd "H-<return>") 'ipython-shell-send-defun)
   ;; (define-key python-mode-map (kbd "RET") 'RET-for-python)
-  (define-key python-mode-map (kbd "H-r") 'run-python)
+  (define-key python-mode-map (kbd "H-r") 'cf-run-python)
   (define-key python-mode-map (kbd "H-d") 'debug-python)
-  (define-key python-mode-map (kbd "H-=") 'elpy-doc)
-   ;; (setq elpy-rpc-python-command "python3")
-  ;; (setq python-check-command "/usr/local/bin/pyflakes")
- ;;(elpy-use-ipython "ipython3")
- (setq elpy-rpc-python-command "python3")
- ;; (define-key elpy-mode-map (kbd "H-[") 'elpy-indent-shift-left)
- ;; (define-key elpy-mode-map (kbd "H-]") 'elpy-indent-shift-right)
- ;; (define-key elpy-mode-map (kbd "H-r") 'elpy-shell-send-region-or-buffer)
- ;; 'r' can't be upcase, I don't know why
- (define-key elpy-mode-map (kbd "H-e") 'elpy-shell-send-current-statement)
- (setenv "PYTHONPATH" (shell-command-to-string "$SHELL --login -c 'echo -n $PYTHONPATH'"))
- (setq python-shell-interpreter "ipython3"
-       python-shell-interpreter-args "--simple-prompt -i")
- (set-variable 'python-indent-offset 4)
-
-;;  (defun RET-for-python ()
-;;    (interactive)
-;;    (progn
-;; 	 (newline-and-indent)
-;; 	 (setq pos (point))
-;; 	 (elpy-autopep8-fix-code)
-;; 	 (goto-char pos)
-;; 	 ))
-;;  (defun TAB-for-python ()
-;;    (interactive)
-;;    (progn
-;; 	 (indent-for-tab-command)
-;; 	 (elpy-autopep8-fix-code)
-;; ))
  
-(defun run-python ()
+ (setq elpy-rpc-python-command "python3")
+
+ (setenv "PYTHONPATH" (shell-command-to-string "$SHELL --login -c 'echo -n $PYTHONPATH'"))
+ (set-variable 'python-indent-offset 4)
+ (setq python-shell-interpreter "jupyter"
+      python-shell-interpreter-args "console --simple-prompt"
+      python-shell-prompt-detect-failure-warning nil)
+(add-to-list 'python-shell-completion-native-disabled-interpreters
+              "jupyter")
+)
+
+(defun live-py3-mode ()
+  (interactive)
+  (live-py-set-version "python3")
+  (live-py-mode))
+
+
+ 
+(defun cf-run-python ()
   (interactive)
   (progn
 	(elpy-autopep8-fix-code)
@@ -147,7 +149,9 @@
 	  " do shell script \"open -a iTerm\"\n"
       ))))
 
- 
+
+
+
 (defun debug-python ()
   (interactive)
   (progn
@@ -170,7 +174,8 @@
         (setq indent-tabs-mode t)
         (setq-default tab-width 4)
         (setq-default python-indent 4)))
-)
+
+
 ;;elpy ends here
 (require 'cmuscheme)
 (defun kh/get-scheme-proc-create ()
@@ -216,8 +221,12 @@ PS: this function is inspired by Wang Yin."
   (progn
 	(save-buffer)
 	(xah-open-in-external-app)))
+
+
+
 (use-package web-mode
   :config
+  
   (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -226,7 +235,29 @@ PS: this function is inspired by Wang Yin."
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (define-key web-mode-map (kbd "H-r") 'run-js))
+  (add-to-list 'auto-mode-alist '("\\.wxml\\'" . web-mode))
+ 
+  (require 'osx-browse)
+  (osx-browse-mode 1)
+  (define-key web-mode-map (kbd "H-r") 'run-js)
+  (require 'zencoding-mode)
+  (add-hook 'sgml-mode-hook 'zencoding-mode)
+  (define-key web-mode-map (kbd "C-i") 'zencoding-expand-yas)
+  (define-key web-mode-map (kbd "C-c C-s") 'yas-expand)
+  (require 'css-mode)
+  (add-to-list 'auto-mode-alist '("\\.wxss\\'" . css-mode))
+  ;; (zencoding-expand-yas)
+;; Auto-start on any markup modes
+)
+
+ ;; (add-to-list 'auto-mode-alist '("\\.wxss\\'" . web-mode))
+  
+(use-package company-web
+  :config
+  (require 'company-web-html)
+  (require 'company-web-jade))
+
+
 
 (use-package js2-mode
 

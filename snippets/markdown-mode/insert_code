@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: insert_code
+# key: c
+# --
+``` java
+$0
+```
