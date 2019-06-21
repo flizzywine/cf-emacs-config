@@ -51,8 +51,8 @@
 
 
 (global-set-key (kbd "H-1") 'delete-other-windows)
-(global-set-key (kbd "H-3") 'split-window-below)
-(global-set-key (kbd "H-2") 'split-window-right)
+(global-set-key (kbd "H-2") 'split-window-below)
+(global-set-key (kbd "H-3") 'split-window-right)
 (global-set-key (kbd "H-`") 'delete-window)
 
 (global-set-key (kbd "H-<down>") 'windmove-down)
@@ -158,4 +158,14 @@
 (global-set-key (kbd "H-O") 'xah-open-in-desktop)
 (global-set-key (kbd "M-c") 'upcase-char)
 
+
+
+(defun select-current-line ()
+  "Select the current line"
+  (interactive)
+  (end-of-line) ; move to end of line
+  (set-mark (line-beginning-position))
+  (exchange-point-and-mark)
+  )
+(global-set-key (kbd "M-H-l") 'select-current-line)
 (provide 'kbds)

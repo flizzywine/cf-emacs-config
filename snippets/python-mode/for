@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: for
-# key: for
+# key: for2
 # --
 for ${1:i} in range($2):
     $0

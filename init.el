@@ -24,6 +24,7 @@
 (require 'modes-and-vars)
 (require 'snippets)
 (require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
 
 ;;face
 ;; (require 'spacemacs-theme)
@@ -49,8 +50,6 @@
   :hook (after-init . doom-modeline-mode))
 
 
-
-
 (set-frame-font "-*-Monaco-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
 (set-default-font "-*-Monaco-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
 (set-frame-font "Monaco")
@@ -63,6 +62,8 @@
 (bind-key* (kbd "M-h") 'backward-delete-word)
 
 (require 'helm)
+
+
 (use-package helm
   :config
   (helm-mode 1)
@@ -97,7 +98,6 @@
 ;;   (add-hook 'java-mode-hook 'flymake-mode-on))
 
 
-
 (global-set-key (kbd "<tab>") 'indent-for-tab-command)
 
 
@@ -126,9 +126,19 @@
 
 (use-package flycheck
   :ensure t
-  :init (global-flycheck-mode)
+  :init
+  (global-flycheck-mode)
+  ;; (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
   :config
   (flycheck-pos-tip-mode t))
+
+(use-package flycheck-clang-analyzer
+  :ensure t
+  :after flycheck
+  :config (flycheck-clang-analyzer-setup)
+  (setq flycheck-clang-analyzer-executable "/usr/bin/clang")
+  )
+
 
 (use-package magit
   :config
@@ -140,7 +150,10 @@
   (global-set-key (kbd "H-K") 'crux-kill-other-buffers)
   (global-set-key (kbd "C-l") 'crux-kill-whole-line)
   (global-set-key (kbd "M-r") 'crux-recentf-find-file)
-  (global-set-key (kbd "<f2>") 'crux-find-user-init-file)
+  (defun open-init-file ()
+	(interactive)
+	(find-file user-init-file))
+  (global-set-key (kbd "<f2>") 'open-init-file)
   ;; (global-set-key (kbd "<f2>") 'crux-find-user-init-file)
 
   (global-set-key (kbd "M-k") 'crux-kill-line-backwards)
@@ -295,6 +308,7 @@ With argument, do this that many times."
 	("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(elpy-syntax-check-command "/usr/local/bin/flake8")
  '(flymake-gui-warnings-enabled nil)
+ '(gofmt-show-errors (quote buffer))
  '(indent-tabs-mode t)
  '(jdee-jdk-registry
    (quote
@@ -303,9 +317,10 @@ With argument, do this that many times."
  '(menu-bar-mode nil)
  '(ns-auto-hide-menu-bar nil)
  '(org-babel-load-languages (quote ((emacs-lisp . t) (python . t))))
+ '(org-export-use-babel nil)
  '(package-selected-packages
    (quote
-	(company-lsp lsp-ui dap-mode lsp-mode realgud-ipdb realgud-jdb realgud-lldb ivy counsel-etags helm-etags-plus ox-pandoc projectile-speedbar cnfonts ipython-shell-send live-py-mode doom-themes doom-modeline simpleclip markdown-toc js-comint osx-browse zencoding-mode company-web-html company-web-jade company-web vue-mode swift3-mode helm-swoop helm-fuzzier ace-jump-helm-line helm avy ace-isearch evil-leader auctex markdown-mode+ markdown-preview-eww dash-at-point ein helm-pydoc pydoc pydoc-info flymake javadoc-lookup w3m xwidgete ace-jump-mode realgud nyan-mode elpy pylint web-mode use-package swiper-helm spacemacs-theme spacemacs-common smartparens smart-mode-line shift-text request-deferred replace-symbol real-auto-save paredit-everywhere osx-lib markdown-mode magit js2-mode irony ioccur helm-smex helm-projectile helm-gtags helm-c-yasnippet helm-c-moccur helm-ag go-mode ggtags function-args flycheck-pos-tip flx-isearch flx-ido find-file-in-project f evil-surround crux company-statistics company-c-headers bash-completion anaphora ace-window)))
+	(ob-go ob-swift ob-ipython jupyter helm-dired-recent-dirs dired-recent org-download org-mode flycheck-irony flycheck-clang-analyzer company-lsp lsp-ui dap-mode lsp-mode realgud-ipdb realgud-jdb realgud-lldb ivy counsel-etags helm-etags-plus ox-pandoc projectile-speedbar cnfonts ipython-shell-send live-py-mode doom-themes doom-modeline simpleclip markdown-toc js-comint osx-browse zencoding-mode company-web-html company-web-jade company-web vue-mode swift3-mode helm-swoop helm-fuzzier ace-jump-helm-line helm avy ace-isearch evil-leader auctex markdown-mode+ markdown-preview-eww dash-at-point ein helm-pydoc pydoc pydoc-info flymake javadoc-lookup w3m xwidgete ace-jump-mode realgud nyan-mode elpy pylint web-mode use-package swiper-helm spacemacs-theme spacemacs-common smartparens smart-mode-line shift-text request-deferred replace-symbol real-auto-save paredit-everywhere osx-lib markdown-mode magit js2-mode irony ioccur helm-smex helm-projectile helm-gtags helm-c-yasnippet helm-c-moccur helm-ag go-mode ggtags function-args flycheck-pos-tip flx-isearch flx-ido find-file-in-project f evil-surround crux company-statistics company-c-headers bash-completion anaphora ace-window)))
  '(python-indent-offset 2)
  '(safe-local-variable-values (quote ((mangle-whitespace . t))))
  '(tab-always-indent t)
@@ -318,12 +333,7 @@ With argument, do this that many times."
  ;; If there is more than one, they won't work right.
  '(flymake-warning ((t nil))))
 
-;; (use-package ace-window
-;;   :config
-;;   (global-set-key (kbd "H-`") 'ace-delete-window)
-;;   ;; (global-set-key (kbd "H-1") 'ace-delete-other-windows)
-;;   (global-set-key (kbd "H-q") 'ace-window)
-;;   )
+
 
 
 ;; java kdbs
@@ -365,10 +375,6 @@ With argument, do this that many times."
 (global-set-key (kbd "H-d") 'dired)
 
 
-(eval-after-load "org-mode"
-  '(progn
-     (define-key org-mode-map   (kbd "C-,") 'crux-switch-to-previous-buffer)
-    ))
 
 
 (use-package ivy
@@ -394,3 +400,44 @@ With argument, do this that many times."
 ;;  (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
 ;;                   :major-modes '(python-mode)
 ;;                   :server-id 'pyls))
+
+
+(use-package org
+  :config
+  (require 'ob-ipython)
+  (require 'ob-go)
+  (auto-image-file-mode 1)
+  (defun insert-current-time () 
+    "Insert the current time" 
+    (interactive "*") 
+    (insert (current-time-string)))
+  (global-set-key (kbd "C-c i") 'insert-current-time)
+  (require 'org-download)
+  (setq org-startup-with-inline-images t)
+  ;; (org-display-inline-image)
+  (define-key org-mode-map   (kbd "C-,") 'crux-switch-to-previous-buffer)
+  ;; (setq python-shell-interpreter "python")
+  (org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   ;; (julia . t)
+   (go . t)
+   (python . t)
+   (ipython . t)
+   ;; (jupyter . t)))
+   ))
+
+  (setq org-confirm-babel-evaluate nil)   ;don't prompt me to confirm everytime I want to evaluate a block
+
+;;; display/update images in the buffer after I evaluate
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+  )
+
+
+(require 'dired-recent)
+(dired-recent-mode 1)
+
+
+;; (global-set-key (kbd "<f1>-k") 'counsel-descbinds)
+;; (use-package ox-ipynb)
+;; (require 'ox-ipynb)
