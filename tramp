@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <19/02/16 19:07:47 /Users/chenfeng/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <19/07/17 16:44:38 /Users/chenfeng/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -22,5 +22,28 @@
   ("readlink" "\\readlink")
   ("git" "\\git")
   ("env-u-option" t))
- ((tramp-file-name "ssh" nil nil "118.31.52.92" "22" nil nil)
+ ((tramp-file-name "ssh" "parallels" nil "10.211.55.4" "22" nil nil)
+  ("uname" "Linux 4.15.0-34-generic")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("file-exists" "test -e")
+  ("case-insensitive" nil)
+  ("readlink" "\\readlink")
+  ("stat" "env QUOTING_STYLE=locale \\stat")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("bzr" nil)
+  ("git" nil)
+  ("hg" nil)
+  ("~" "/home/parallels")
+  ("id" "/usr/bin/id")
+  ("gid-string" "parallels")
+  ("gid-integer" 1000))
+ ((tramp-file-name "ssh" nil nil "cfMac" nil nil nil)
+  nil)
+ ((tramp-file-name "sudo" "parallels" nil "10.211.55.4" "22" nil nil)
   nil))

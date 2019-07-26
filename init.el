@@ -39,15 +39,10 @@
 (load-theme 'doom-one t)
 
 
-;; ;;   ;; Enable flashing mode-line on errors
-;; (doom-themes-visual-bell-config)
-
-;; ;;   ;; Enable custom neotree theme
-;; (doom-themes-neotree-config)  ; all-the-icons fonts must be installed!
-
 (use-package doom-modeline
   :ensure t
-  :hook (after-init . doom-modeline-mode))
+  :hook (after-init . doom-modeline-mode)
+  )
 
 
 (set-frame-font "-*-Monaco-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
@@ -81,7 +76,8 @@
 (use-package ace-jump-mode
   :config
   (global-set-key (kbd "C-j") 'ace-jump-word-mode)
-  (global-set-key (kbd "M-j") 'ace-jump-line-mode))
+  (global-set-key (kbd "M-j") 'ace-jump-line-mode)
+  )
 
 (use-package helm-fuzzier
   :config
@@ -113,16 +109,28 @@
 
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'after-init-hook 'company-statistics-mode)
+
 (use-package company
   :config
   ;; (define-key c++-mode-map (kbd "C-<tab>") 'company-complete)
   ;; (add-to-list 'company-backends 'company-jedi)
   ;; (add-to-list 'company-backends 'company-dabbrev)
+  
   (setq company-minimum-prefix-length 2)
   (setq company-idle-delay 0)
-  (setq company-dabbrev-downcase nil))
+  (setq company-dabbrev-downcase nil)
+  )
 
-
+(use-package company-tabnine
+  :ensure t
+  :config
+  (add-to-list 'company-backends #'company-tabnine)
+  
+  (setq company-frontends
+        '(company-tng-frontend
+          company-pseudo-tooltip-frontend
+          company-echo-metadata-frontend))
+  )
 
 (use-package flycheck
   :ensure t
@@ -130,6 +138,8 @@
   (global-flycheck-mode)
   ;; (add-hook 'flycheck-mode-hook #'flycheck-irony-setup)
   :config
+  (require 'flycheck-pyflakes)
+  ;; (setq-default flycheck-disabled-checkers '(python-pycompile))
   (flycheck-pos-tip-mode t))
 
 (use-package flycheck-clang-analyzer
@@ -306,7 +316,14 @@ With argument, do this that many times."
  '(custom-safe-themes
    (quote
 	("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+ '(elpy-rpc-python-command "python3")
+ '(elpy-rpc-timeout 5)
  '(elpy-syntax-check-command "/usr/local/bin/flake8")
+ '(flycheck-checkers
+   (quote
+	(python-pycompile ada-gnat asciidoctor asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cuda-nvcc cwl d-dmd dockerfile-hadolint emacs-lisp emacs-lisp-checkdoc erlang-rebar3 erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-megacheck go-staticcheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json json-jq jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli markdown-mdl nix nix-linter opam perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar tex-chktex tex-lacheck texinfo textlint typescript-tslint verilog-verilator vhdl-ghdl xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby clang-analyzer)))
+ '(flycheck-python-flake8-executable
+   "/Library/Frameworks/Python.framework/Versions/3.6/bin/flake8")
  '(flymake-gui-warnings-enabled nil)
  '(gofmt-show-errors (quote buffer))
  '(indent-tabs-mode t)
@@ -320,8 +337,8 @@ With argument, do this that many times."
  '(org-export-use-babel nil)
  '(package-selected-packages
    (quote
-	(ob-go ob-swift ob-ipython jupyter helm-dired-recent-dirs dired-recent org-download org-mode flycheck-irony flycheck-clang-analyzer company-lsp lsp-ui dap-mode lsp-mode realgud-ipdb realgud-jdb realgud-lldb ivy counsel-etags helm-etags-plus ox-pandoc projectile-speedbar cnfonts ipython-shell-send live-py-mode doom-themes doom-modeline simpleclip markdown-toc js-comint osx-browse zencoding-mode company-web-html company-web-jade company-web vue-mode swift3-mode helm-swoop helm-fuzzier ace-jump-helm-line helm avy ace-isearch evil-leader auctex markdown-mode+ markdown-preview-eww dash-at-point ein helm-pydoc pydoc pydoc-info flymake javadoc-lookup w3m xwidgete ace-jump-mode realgud nyan-mode elpy pylint web-mode use-package swiper-helm spacemacs-theme spacemacs-common smartparens smart-mode-line shift-text request-deferred replace-symbol real-auto-save paredit-everywhere osx-lib markdown-mode magit js2-mode irony ioccur helm-smex helm-projectile helm-gtags helm-c-yasnippet helm-c-moccur helm-ag go-mode ggtags function-args flycheck-pos-tip flx-isearch flx-ido find-file-in-project f evil-surround crux company-statistics company-c-headers bash-completion anaphora ace-window)))
- '(python-indent-offset 2)
+	(company-tabnine flycheck-mypy flycheck-pyflakes ob-go ob-swift ob-ipython jupyter helm-dired-recent-dirs dired-recent org-download org-mode flycheck-irony flycheck-clang-analyzer company-lsp lsp-ui dap-mode lsp-mode realgud-ipdb realgud-jdb realgud-lldb ivy counsel-etags helm-etags-plus ox-pandoc projectile-speedbar cnfonts ipython-shell-send live-py-mode doom-themes doom-modeline simpleclip markdown-toc js-comint osx-browse zencoding-mode company-web-html company-web-jade company-web vue-mode swift3-mode helm-swoop helm-fuzzier ace-jump-helm-line helm avy ace-isearch evil-leader auctex markdown-mode+ markdown-preview-eww dash-at-point ein helm-pydoc pydoc pydoc-info flymake javadoc-lookup w3m xwidgete ace-jump-mode realgud nyan-mode elpy pylint web-mode use-package swiper-helm spacemacs-theme spacemacs-common smartparens smart-mode-line shift-text request-deferred replace-symbol real-auto-save paredit-everywhere osx-lib markdown-mode magit js2-mode irony ioccur helm-smex helm-projectile helm-gtags helm-c-yasnippet helm-c-moccur helm-ag go-mode ggtags function-args flycheck-pos-tip flx-isearch flx-ido find-file-in-project f evil-surround crux company-statistics company-c-headers bash-completion anaphora ace-window)))
+ '(python-indent-offset 4)
  '(safe-local-variable-values (quote ((mangle-whitespace . t))))
  '(tab-always-indent t)
  '(tab-width 4))
@@ -436,6 +453,10 @@ With argument, do this that many times."
 
 (require 'dired-recent)
 (dired-recent-mode 1)
+
+
+(global-set-key (kbd "H-k") 'kill-buffer-and-window)
+(global-set-key (kbd "M-k") 'kill-this-buffer)
 
 
 ;; (global-set-key (kbd "<f1>-k") 'counsel-descbinds)

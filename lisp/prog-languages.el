@@ -67,7 +67,7 @@
   (add-to-list 'auto-mode-alist '("\\.wxss\\'" . css-mode))
   (require 'osx-browse)
   (osx-browse-mode 1)
-  (define-key web-mode-map (kbd "H-r") 'run-js)
+  (define-key web-mode-map (kbd "H-r") 'run-in-browser)
   (require 'zencoding-mode)
   (add-hook 'sgml-mode-hook 'zencoding-mode)
   (define-key web-mode-map (kbd "C-i") 'zencoding-expand-yas)
@@ -172,6 +172,18 @@
 
 
 
+(defun disable-breakpoint ()
+  (interactive)
+  (replace-regexp "import ipdb" "# import ipdb" nil (point-min) (point-max))
+  (replace-regexp "ipdb.set_trace()" "# ipdb.set_trace()" nil (point-min) (point-max)))
+
+(defun enable-breakpoint ()
+  (interactive)
+  (replace-regexp "# import ipdb" "import ipdb" nil (point-min) (point-max))
+  (replace-regexp "# ipdb.set_trace()" "ipdb.set_trace()" nil (point-min) (point-max)))
+
+
+(setq-default tab-width 4)
 
  (use-package elpy
    :config
@@ -182,21 +194,29 @@
    (define-key python-mode-map (kbd "H-;") 'elpy-autopep8-fix-code)
    (define-key python-mode-map (kbd "C-o") 'elpy-open-and-indent-line-below)
    (define-key python-mode-map (kbd "C-S-o") 'elpy-open-and-indent-line-above)
-   (define-key python-mode-map (kbd "M-<return>") 'ipython-shell-send-region)
-   
-   (define-key python-mode-map (kbd "H-<return>") 'ipython-shell-send-defun)
+   ;; (define-key python-mode-map (kbd "M-<return>") 'ipython-shell-send-region)
+   ;; (define-key python-mode-map (kbd "M-<return>") 'ein:worksheet-execute-cell-and-goto-next)
+   ;; (define-key python-mode-map (kbd "H-<return>") 'ipython-shell-send-defun)
    (defun cf-run-python ()
 	 (interactive)
-	 (cf-run-lang "ipython3"))
+	 (elpy-autopep8-fix-code)
+	 (cf-run-lang "ipython3 --pdb"))
+   (defun cf-debug-python ()
+	 (interactive)
+	 (elpy-autopep8-fix-code)
+	 (cf-run-lang "ipdb"))
   (define-key python-mode-map (kbd "H-r") 'cf-run-python)
-  (define-key python-mode-map (kbd "H-d") 'debug-python)
+  (define-key python-mode-map (kbd "H-d") 'cf-debug-python)
  
  (setq elpy-rpc-python-command "python3")
 
  (setenv "PYTHONPATH" (shell-command-to-string "$SHELL --login -c 'echo -n $PYTHONPATH'"))
  (set-variable 'python-indent-offset 4)
- (setq python-shell-interpreter "ipython")
+ ;; (setq python-shell-interpreter "ipython")
 
+
+ ;; (require 'flycheck-mypy)
+ ;; (flycheck-select-checker "python-mypy")
 )
 
 
